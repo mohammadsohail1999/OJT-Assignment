@@ -4,11 +4,15 @@ const initialProductState = [];
 
 
 export const ProductReducer = (state=initialProductState,action)=>{
-    switch (action.payload) {
+    switch (action.type) {
         case GET_PRODUCTS:
-            return [];
+            return action?.payload ?  action.payload : [];
 
         default:
             return [];
     }
 }
+
+
+
+export const getProductsState = state=> state?.products;
