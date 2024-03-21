@@ -9,6 +9,11 @@ export const CLEAR_CART = "CLEAR_CART";
 export const GET_PRODUCT_DETAIL = "GET_PRODUCT_DETAIL";
 
 
+// loading action types
+
+export const PRODUCTS_LIST_LOADING_START = "PRODUCTS_LIST_LOADING_START";
+export const PRODUCTS_LIST_LOADING_STOP = "PRODUCTS_LIST_LOADING_STOP";
+
 
 
 

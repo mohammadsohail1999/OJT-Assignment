@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // import { getProducts } from '../services/productService';
 
 import { getProducts } from "../../service/productService";
@@ -13,3 +14,33 @@ export const fetchProducts = () => {
     }
   };
 };
+=======
+import { getProducts } from "../../service/productService"
+import { GET_PRODUCTS } from "../actionTypes";
+import { ProductListLoadingStartAction, ProductListLoadingStopAction } from "./GlobalLoadingActions";
+
+export const getProductListAction = (queries)=>async(dispatch,thunkargs)=>{
+
+    // dispatch(ProductListLoadingStartAction());
+
+    getProducts("").then(res=>{
+        console.log(res?.data,"res");
+        dispatch(getProductsList(res?.data || []));
+    }).catch(err=>{
+        console.log(err,"error");
+    }).finally(()=>{
+        // dispatch(ProductListLoadingStopAction());
+    })
+}
+
+
+
+export const getProductsList = (data=[])=>{
+
+    return {
+       type: GET_PRODUCTS,
+       payload:data
+    }
+
+}
+>>>>>>> 06bc68b523c5525c408cc849644ed5e8cd2d24d3

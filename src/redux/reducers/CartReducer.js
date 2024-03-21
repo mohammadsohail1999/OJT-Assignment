@@ -7,8 +7,11 @@ export const CartReducer = (state=initialCartState,action)=>{
     switch (action.payload) {
       
         case ADD_TO_CART:
-            return [];
-      
+
+
+        return state;
+            
+        
             case REMOVE_FROM_CART:
                 return [];
       
