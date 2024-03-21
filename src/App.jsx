@@ -10,7 +10,7 @@ import { store } from "./redux/store";
 import Homepage from "./pages/Homepage";
 import { Toaster } from "react-hot-toast";
 
-function App() {
+export default function App() {
   return (
     <Provider store={store}>
       <CssBaseline />
@@ -25,5 +25,3 @@ function App() {
     </Provider>
   );
 }
-
-export default App;
