@@ -6,10 +6,17 @@ import CardActions from "@mui/material/CardActions";
 import Typography from "@mui/material/Typography";
 import { Box, Button } from "@mui/material";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 export default function ProductCard({ cardData }) {
   const addtoCart = () => {
     toast.success("Added to cart!");
+  };
+
+  const navigate = useNavigate();
+
+  const NavigatetoProductDetail = (id) => {
+    navigate(`/${id}`);
   };
 
   return (
@@ -20,8 +27,16 @@ export default function ProductCard({ cardData }) {
         flexDirection: "column",
         justifyContent: "space-between",
         padding: "1rem",
+        cursor: "pointer",
+        "&:hover": {
+          transform: "scale(1.1)",
+          transition: "all 500 ease",
+        },
       }}
       raised={false}
+      onClick={() => {
+        NavigatetoProductDetail(cardData?.id);
+      }}
     >
       <Box>
         <CardMedia
