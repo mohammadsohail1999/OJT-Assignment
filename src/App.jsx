@@ -9,7 +9,7 @@ import {BrowserRouter as Router} from "react-router-dom";
 import Header from './components/Header';
 import {Provider} from "react-redux";
 import { store } from './redux/store';
-
+import Productdetails from './pages/Productdetails';
 
 function App() {
 
@@ -18,7 +18,7 @@ function App() {
           <CssBaseline />
           <Router>
             <Header/>
-
+            <Productdetails/>
           </Router>
     </Provider>
   )
