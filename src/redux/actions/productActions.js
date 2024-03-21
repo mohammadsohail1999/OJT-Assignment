@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 // import { getProducts } from '../services/productService';
 
 import { getProducts } from "../../service/productService";
@@ -15,6 +16,8 @@ export const fetchProducts = () => {
   };
 };
 =======
+=======
+>>>>>>> 647b3de72ec56dbe8a322eeaa3e771fd78e30d40
 import { getProducts } from "../../service/productService"
 import { GET_PRODUCTS } from "../actionTypes";
 import { ProductListLoadingStartAction, ProductListLoadingStopAction } from "./GlobalLoadingActions";
@@ -43,4 +46,7 @@ export const getProductsList = (data=[])=>{
     }
 
 }
+<<<<<<< HEAD
 >>>>>>> 06bc68b523c5525c408cc849644ed5e8cd2d24d3
+=======
+>>>>>>> 647b3de72ec56dbe8a322eeaa3e771fd78e30d40

@@ -9,7 +9,11 @@ import { Provider } from "react-redux";
 import { store } from "./redux/store";
 import Homepage from "./pages/Homepage";
 import { Toaster } from "react-hot-toast";
+<<<<<<< HEAD
  
+=======
+
+>>>>>>> 647b3de72ec56dbe8a322eeaa3e771fd78e30d40
 export default function App() {
   return (
     <Provider store={store}>
@@ -24,4 +28,8 @@ export default function App() {
       <Toaster />
     </Provider>
   );
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 647b3de72ec56dbe8a322eeaa3e771fd78e30d40
