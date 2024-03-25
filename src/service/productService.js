@@ -1,7 +1,7 @@
 import { fakeStoreService } from "./axiosInstance"
 
 export const getProducts =  (query)=>{
-    return fakeStoreService.get(`/products`)
+    return fakeStoreService.get(`/products${query}`)
 }
 
 export const getProductDetailService =  (id)=>{

@@ -9,7 +9,8 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
 export default function ProductCard({ cardData }) {
-  const addtoCart = () => {
+  const addtoCart = (e) => {
+    e.stopPropagation();
     toast.success("Added to cart!");
   };
 
@@ -29,7 +30,7 @@ export default function ProductCard({ cardData }) {
         padding: "1rem",
         cursor: "pointer",
         "&:hover": {
-          transform: "scale(1.1)",
+          transform: "scale(1.05)",
           transition: "all 500 ease",
         },
       }}
@@ -41,10 +42,10 @@ export default function ProductCard({ cardData }) {
       <Box>
         <CardMedia
           component="img"
-          height="150"
+          height="200"
           image={cardData?.image}
           sx={{
-            objectFit: "contain",
+            objectFit: "fill",
           }}
         />
         <CardContent>

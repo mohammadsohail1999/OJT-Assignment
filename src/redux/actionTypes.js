@@ -18,6 +18,20 @@ export const PRODUCTS_LIST_LOADING_STOP = "PRODUCTS_LIST_LOADING_STOP";
 
 
 
+//  Theme action types
+export const TOGGLE_THEME = "TOGGLE_THEME"
+
+
+// categories action types
+
+
+export const GET_PRODUCT_CATEGORIES = "GET_PRODUCT_CATEGORIES";
+
+
+
+
+
+
 
 
 

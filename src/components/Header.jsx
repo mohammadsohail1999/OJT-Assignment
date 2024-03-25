@@ -1,53 +1,59 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-// import MenuIcon from '@material-ui/icons/Menu';
-import {ShoppingCart} from "@material-ui/icons";
-import { Badge } from '@material-ui/core';
+import * as React from "react";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
+import LightModeIcon from "@mui/icons-material/LightMode";
+import { Badge, IconButton, Stack } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import { getThemeState } from "../redux/reducers/ThemeReducer";
+import ThemeActions from "../redux/actions/ThemeActions";
+import { useNavigate } from "react-router-dom";
 
+export default function MenuAppBar() {
+  const theme = useSelector(getThemeState);
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  title: {
-    flexGrow: 1,
-  },
+  const dispatch = useDispatch();
 
-  cartIcon:{
-    color: "#fff",
-    cursor:"pointer",
-  }
-}));
+  const navigate = useNavigate();
 
-export default function Header() {
-  const classes = useStyles();
+  const toggleTheme = () => {
+    dispatch(ThemeActions);
+  };
+
+  const navigateToCart = () => {
+    navigate("/cart");
+  };
 
   return (
-    <div className={classes.root}>
-      <AppBar position="static">
+    <Box>
+      <AppBar>
         <Toolbar>
-          <Typography variant="h6" className={classes.title}>
-            Ecommerce
-          </Typography>
+          <Stack
+            direction={"row"}
+            flex={"1"}
+            alignItems={"center"}
+            justifyContent={"space-between"}
+          >
+            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+              Ecommerce
+            </Typography>
+            <Stack direction={"row"} spacing={2}>
+              <IconButton aria-label="cart" onClick={navigateToCart}>
+                <Badge badgeContent={4}>
+                  <ShoppingBagIcon />
+                </Badge>
+              </IconButton>
 
-      <Badge badgeContent={4} className={classes.cartIcon} color="error">
-            {/* <IconButton> */}
-            <ShoppingCart />
-            {/* </IconButton> */}
-      </Badge>
-
-         
-       
+              <IconButton onClick={toggleTheme}>
+                {theme === "light" ? <DarkModeIcon /> : <LightModeIcon />}
+              </IconButton>
+            </Stack>
+          </Stack>
         </Toolbar>
       </AppBar>
-    </div>
+    </Box>
   );
 }
