@@ -9,11 +9,11 @@ import { Provider } from "react-redux";
 import { store } from "./redux/store";
 import Homepage from "./pages/Homepage";
 import { Toaster } from "react-hot-toast";
-<<<<<<< HEAD
- 
-=======
+import ProductDetails from "./pages/Productdetails";
+import LoginPage from "./pages/LoginPage";
 
->>>>>>> 647b3de72ec56dbe8a322eeaa3e771fd78e30d40
+
+ 
 export default function App() {
   return (
     <Provider store={store}>
@@ -22,14 +22,12 @@ export default function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Homepage />} />
-          <Route path="/:id" element={<></>} />
+          <Route path="/:id" element={<ProductDetails />} />
+          <Route path="/login" element={<LoginPage />} />
+
         </Routes>
       </Router>
       <Toaster />
     </Provider>
   );
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 647b3de72ec56dbe8a322eeaa3e771fd78e30d40
