@@ -9,6 +9,8 @@ import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage' // defaults to localStorage for web
 import categoriesReducer from "./reducers/categoriesReducer";
  
+import { ProductDetailReducer } from "./reducers/ProductDetailReducer";
+import authReducer from "./reducers/authReducer";
 
 
 const rootReducer = combineReducers({
@@ -17,6 +19,8 @@ const rootReducer = combineReducers({
     categoriesReducer:categoriesReducer,
     // GlobalLoading: GlobalLoadingReducer,
     theme:ThemeReducer,
+    productDetail: ProductDetailReducer,
+    auth: authReducer,
 })
 
 

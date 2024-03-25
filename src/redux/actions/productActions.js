@@ -10,14 +10,16 @@ export const getProductListAction = (queries="")=>async(dispatch,thunkargs)=>{
     }).finally(()=>{
     })
 }
-
-
-
+ 
+ 
+ 
 export const getProductsList = (data=[])=>{
-
+ 
     return {
        type: GET_PRODUCTS,
        payload:data
     }
-
+ 
 }
+
+ 

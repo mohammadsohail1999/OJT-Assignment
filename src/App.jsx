@@ -13,6 +13,8 @@ import { PersistGate } from "redux-persist/integration/react";
 import ThemeWrapper from "./components/ThemeWrapper";
 import NotFound from "./pages/NotFound";
 import CartPage from "./pages/CartPage";
+import ProductDetails from "./pages/Productdetails";
+import LoginPage from "./pages/LoginPage";
 
 export default function App() {
   return (
@@ -27,7 +29,8 @@ export default function App() {
                 <Route path="/" element={<Homepage />} />
                 <Route path="/category/:id" element={<Homepage />} />
                 <Route path="/cart" element={<CartPage />} />
-                <Route path="/:id" element={<></>} />
+                <Route path="/:id" element={<ProductDetails />} />
+                <Route path="/login" element={<LoginPage />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </Router>
