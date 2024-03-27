@@ -65,7 +65,7 @@ export default function ProductCard({ cardData }) {
             </Typography>
             <Typography>Rs {cardData?.price}</Typography>
 
-            <Stack direction={'row'} spacing={1.5} alignItems={'center'}>
+            <Stack direction={'row'} spacing={1} alignItems={'center'}>
               <Rating
                 initialValue={
                   cardData?.rating?.rate ? cardData?.rating?.rate : 0
@@ -76,6 +76,7 @@ export default function ProductCard({ cardData }) {
               <Typography
                 sx={{
                   fontSize: '12px',
+                  alignSelf: 'flex-start',
                 }}
               >
                 ({cardData?.rating?.count ? cardData?.rating?.count : 0})
