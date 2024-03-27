@@ -1,6 +1,5 @@
 import {createStore,applyMiddleware, combineReducers} from "redux";
 import {thunk} from "redux-thunk";
-import { CartReducer } from "./reducers/CartReducer";
 import { ProductReducer } from "./reducers/ProductReducer";
 import {composeWithDevTools} from "@redux-devtools/extension";
 import { GlobalLoadingReducer } from "./reducers/GlobalLoaderReducer";
@@ -11,6 +10,7 @@ import categoriesReducer from "./reducers/categoriesReducer";
  
 import { ProductDetailReducer } from "./reducers/ProductDetailReducer";
 import authReducer from "./reducers/authReducer";
+import CartReducer from "./reducers/CartReducer";
 
 
 const rootReducer = combineReducers({

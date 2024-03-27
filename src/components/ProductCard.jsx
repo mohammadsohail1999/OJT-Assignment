@@ -64,3 +64,74 @@ export default function ProductCard({ cardData }) {
     </Card>
   );
 }
+
+
+// import * as React from 'react';
+// import Card from '@mui/material/Card';
+// import CardMedia from '@mui/material/CardMedia';
+// import CardContent from '@mui/material/CardContent';
+// import CardActions from '@mui/material/CardActions';
+// import Typography from '@mui/material/Typography';
+// import { IconButton } from '@mui/material';
+// import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+// import { useNavigate } from 'react-router-dom';
+
+// export default function ProductCard({ cardData }) {
+//   const navigate = useNavigate();
+
+//   const navigateToProductDetail = (id) => {
+//     navigate(`/${id}`);
+//   };
+
+//   return (
+//     <Card
+//       sx={{
+//         display: 'flex',
+//         flexDirection: 'column',
+//         justifyContent: 'space-between',
+//         cursor: 'pointer',
+//         borderRadius: '8px', // Adjust border radius for square cards
+//         boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)', // Add a subtle shadow
+//         transition: 'transform 0.3s ease',
+//         '&:hover': {
+//           transform: 'scale(1.05)',
+//         },
+//       }}
+//       raised={false}
+//       onClick={() => {
+//         navigateToProductDetail(cardData?.id);
+//       }}
+//     >
+//       <CardMedia
+//         component="img"
+//         height="200" // Set a fixed height for the card
+//         width="100%" // Maintain aspect ratio for square cards
+//         image={cardData?.image}
+//         alt={cardData?.title}
+//         sx={{
+//           objectFit: 'cover',
+//           borderRadius: '8px 8px 0 0', // Adjust border radius for the top corners
+//         }}
+//       />
+//       <CardContent>
+//         <Typography variant="h6" align="center" gutterBottom>
+//           {cardData?.title}
+//         </Typography>
+//         <Typography variant="body2" color="text.secondary" align="center">
+//           Price: ${cardData?.price}
+//         </Typography>
+//       </CardContent>
+//       <CardActions disableSpacing sx={{ justifyContent: 'center' }}>
+//         <IconButton
+//           aria-label="add to cart"
+//           onClick={(e) => {
+//             e.stopPropagation();
+//             // Handle adding to cart functionality here
+//           }}
+//         >
+//           <AddShoppingCartIcon />
+//         </IconButton>
+//       </CardActions>
+//     </Card>
+//   );
+// }

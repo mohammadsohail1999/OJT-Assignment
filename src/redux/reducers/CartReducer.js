@@ -1,24 +1,29 @@
-import { ADD_TO_CART, CLEAR_CART, GET_PRODUCTS, REMOVE_FROM_CART } from "../actionTypes";
+import { ADD_TO_CART, REMOVE_FROM_CART, CLEAR_CART } from "../actionTypes";
 
-const initialCartState = [];
+const initialState = {
+  items: [], // Array to hold items in the cart
+};
 
+const CartReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case ADD_TO_CART:
+      return {
+        ...state,
+        items: [...state.items, action.payload],
+      };
+    case REMOVE_FROM_CART:
+      return {
+        ...state,
+        items: state.items.filter((item) => item.id !== action.payload),
+      };
+    case CLEAR_CART:
+      return {
+        ...state,
+        items: [],
+      };
+    default:
+      return state;
+  }
+};
 
-export const CartReducer = (state=initialCartState,action)=>{
-    switch (action.payload) {
-        case ADD_TO_CART:
-
-        return state;
-            
-            case REMOVE_FROM_CART:
-                return [];
-      
-                case CLEAR_CART:
-                    return [];
-
-        default:
-            return [];
-    }
-}
-
- 
-export const getCartState = state => state?.cart
+export default CartReducer;
