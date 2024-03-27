@@ -16,7 +16,7 @@ export const CartReducer = (state=initialCartState,action)=>{
                     return [];
 
         default:
-            return [];
+            return state;
     }
 }
 
