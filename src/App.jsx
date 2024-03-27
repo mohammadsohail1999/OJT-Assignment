@@ -17,6 +17,7 @@ import ProductDetails from './pages/Productdetails'
 import LoginPage from './pages/LoginPage'
 import GlobalLoader from './components/GlobalLoader'
 import Protected from './components/ProtectedRoute'
+import SignUp from './pages/SignUp'
 
 export default function App() {
   return (
@@ -40,6 +41,8 @@ export default function App() {
                 />
                 <Route path='/:id' element={<ProductDetails />} />
                 <Route path='/login' element={<LoginPage />} />
+                <Route path='/signup' element={<SignUp />} />
+                {/* <Route path='/cart' element={<CartPage />} /> */}
                 <Route path='*' element={<NotFound />} />
               </Routes>
             </Router>
