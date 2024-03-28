@@ -38,9 +38,7 @@ const SignupPage = () => {
     } else if (password !== confirmPassword) {
       setError("Passwords do not match");
     } else {
-      // Implement signup logic here
       console.log("Signup successful");
-      // Redirect to login page after signup
       navigate("/login");
     }
   };
@@ -51,7 +49,29 @@ const SignupPage = () => {
 
   const handleAvatarChange = (event) => {
     const file = event.target.files[0];
+    const maxSize = 2 * 1024 * 1024; // 2MB max size
+
+    // Check if a file was selected
+    if (!file) {
+      setError("Image is required.");
+      return;
+    }
+
+    // Check if the selected file is an image
+    if (!file.type.match(/image\/(jpg|jpeg|png)/)) {
+      setError("Select a valid image (JPEG or PNG).");
+      return;
+    }
+
+    // Check if the size of the image is within the allowed limit
+    if (file.size > maxSize) {
+      setError("Image size exceeds 2MB limit");
+      return;
+    }
+
+    // Set the avatar
     setAvatar(file);
+    setError(""); // Clear any previous error messages
   };
 
   return (

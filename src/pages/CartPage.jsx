@@ -13,6 +13,7 @@ import {
   Paper,
   Tooltip,
   Button,
+  Rating,
 } from "@mui/material";
 import { Delete } from "@mui/icons-material";
 import { REMOVE_FROM_CART } from "../redux/actionTypes";
@@ -59,6 +60,8 @@ const Cart = () => {
     return total;
   };
 
+  console.log("cartData", cartItems);
+
   return (
     <div>
       <Typography
@@ -97,57 +100,74 @@ const Cart = () => {
                         primary={item.title}
                         secondary={
                           <Typography variant="body2" component="span">
-                            <Typography variant="body2" component="span">
-                              <span
-                                style={{
-                                  color: item.available ? "green" : "red",
-                                }}
-                              >
-                                {item.available="In Stock"}
-                              </span>
-                              <br />
-                              <span style={{color: "#666" }}>
-                                Price: ${item.price}
-                              </span>
-                              <br />
-                              <Button
-                                variant="outlined"
-                                onClick={() => incrementQuantity(item.id)}
-                              >
-                                +
-                              </Button>
+                            <span
+                              style={{
+                                color: item.available ? "green" : "red",
+                              }}
+                            >
+                              {item.available ? "In Stock" : "Out of Stock"}
+                            </span>
+                            <br />
+                            <span>
+                           <Rating
+                                name="read-only"
+                                value={item.rating.rate}
+                                readOnly
+                              />
+                            </span>
+                            <br />
 
+                            <span style={{ color: "#666" }}>
+                              Price: ${item.price}
+                            </span>
+                            <br />
+                            <Box display="flex" alignItems="center">
                               <Button
                                 variant="outlined"
                                 onClick={() => decrementQuantity(item.id)}
                               >
                                 -
                               </Button>
-                              <Tooltip title="Delete">
-                          <IconButton
-                            aria-label="delete"
-                            onClick={() => removeFromCart(item.id)}
-                          >
-                            <Delete />
-                          </IconButton>
-                        </Tooltip>
-                        <Tooltip title="Save for Later">
-                          <IconButton
-                            aria-label="save-for-later"
-                            onClick={() => saveForLater(item.id)}
-                          >
-                            Save for later
-                          </IconButton>
-                        </Tooltip>
-                        <Tooltip title="Share">
-                          <IconButton
-                            aria-label="share"
-                            onClick={() => shareItem(item.id)}
-                          >
-                            Share
-                          </IconButton>
-                        </Tooltip>
-                            </Typography>
+                              <Typography
+                                variant="body2"
+                                style={{ margin: "0 8px" }}
+                              >
+                                {quantityCount[item.id] || 0}
+                              </Typography>
+                              <Button
+                                variant="outlined"
+                                onClick={() => incrementQuantity(item.id)}
+                              >
+                                +
+                              </Button>
+                            </Box>
+                            <Tooltip title="Delete" sx={{ fontSize: 15 }}>
+                              <IconButton
+                                aria-label="delete"
+                                onClick={() => removeFromCart(item.id)}
+                              >
+                                <Delete />
+                              </IconButton>
+                            </Tooltip>
+                            <Tooltip
+                              title="Save for Later"
+                              sx={{ fontSize: 15 }}
+                            >
+                              <IconButton
+                                aria-label="save-for-later"
+                                onClick={() => saveForLater(item.id)}
+                              >
+                                Save for later
+                              </IconButton>
+                            </Tooltip>
+                            <Tooltip title="Share" sx={{ fontSize: 15 }}>
+                              <IconButton
+                                aria-label="share"
+                                onClick={() => shareItem(item.id)}
+                              >
+                                Share
+                              </IconButton>
+                            </Tooltip>
                           </Typography>
                         }
                       />
