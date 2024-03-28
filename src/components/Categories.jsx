@@ -25,7 +25,7 @@ const Categories = () => {
   const { id } = useParams()
 
   return (
-    <Stack direction={'row'} spacing={4}>
+    <Stack direction={'row'} flexWrap={'wrap'} gap={'1rem'}>
       {Array.isArray(categoriesState) && categoriesState?.length
         ? categoriesState?.map(el => (
             <CustomChip

@@ -190,6 +190,7 @@ import {
   Tooltip,
   Button,
   Rating,
+  Container,
 } from '@mui/material'
 import { Delete } from '@mui/icons-material'
 import { REMOVE_FROM_CART } from '../redux/actionTypes'
@@ -197,6 +198,7 @@ import { updateCart } from '../redux/actions/cartActions'
 import AddIcon from '@mui/icons-material/Add'
 import RemoveIcon from '@mui/icons-material/Remove'
 import useCart from '../hooks/useCart'
+import { useNavigate } from 'react-router-dom'
 
 const Cart = () => {
   // const cartItems = useSelector(state => state.cart.items)
@@ -210,11 +212,11 @@ const Cart = () => {
   const dispatch = useDispatch()
 
   const saveForLater = item => {
-    console.log('Item saved for later:', itemId)
+    // console.log('Item saved for later:', itemId)
   }
 
   const shareItem = item => {
-    console.log('Share item:', itemId)
+    // console.log('Share item:', itemId)
   }
 
   const calculateSubtotal = () => {
@@ -222,6 +224,8 @@ const Cart = () => {
       return acc + val?.quantity * val?.price
     }, 0)
   }
+
+  const navigate = useNavigate()
 
   return (
     <div>
@@ -242,125 +246,133 @@ const Cart = () => {
           Your cart is empty
         </Typography>
       ) : (
-        <Paper elevation={1} style={{ padding: '1rem' }}>
-          <List>
-            {cartItems.map(item => (
-              <div key={item.id}>
-                <ListItem disablePadding>
-                  <Grid container alignItems='center'>
-                    <Grid item xs={2} sm={1.5}>
-                      <CardMedia
-                        component='img'
-                        image={item.image}
-                        alt={item.title}
-                        style={{
-                          width: 100,
-                          height: 100,
-                          // borderRadius: '50%',
-                          objectFit: 'fill',
-                        }}
-                      />
-                    </Grid>
-                    <Grid item xs={6}>
-                      <ListItemText
-                        primary={item.title}
-                        secondary={
-                          <Typography variant='body2' component='span'>
-                            <span
-                              style={{
-                                color: true ? 'green' : 'red',
-                              }}
-                            >
-                              {/* {item.available ? 'In Stock' : 'Out of Stock'} */}
-                              In Stock
-                            </span>
-                            <br />
-                            <span>
-                              <Rating
-                                name='read-only'
-                                value={item.rating.rate}
-                                readOnly
-                              />
-                            </span>
-                            <br />
+        <Container maxWidth='lg'>
+          <Paper elevation={1} style={{ padding: '1rem' }}>
+            <List>
+              {cartItems.map(item => (
+                <div key={item.id}>
+                  <ListItem disablePadding>
+                    <Grid container alignItems='center'>
+                      <Grid item xs={2} sm={1.5}>
+                        <CardMedia
+                          component='img'
+                          image={item.image}
+                          alt={item.title}
+                          style={{
+                            width: 100,
+                            height: 100,
+                            // borderRadius: '50%',
+                            objectFit: 'fill',
+                          }}
+                        />
+                      </Grid>
+                      <Grid item xs={6}>
+                        <ListItemText
+                          primary={item.title}
+                          secondary={
+                            <Typography variant='body2' component='span'>
+                              <span
+                                style={{
+                                  color: true ? 'green' : 'red',
+                                }}
+                              >
+                                {/* {item.available ? 'In Stock' : 'Out of Stock'} */}
+                                In Stock
+                              </span>
+                              <br />
+                              <span>
+                                <Rating
+                                  name='read-only'
+                                  value={item.rating.rate}
+                                  readOnly
+                                />
+                              </span>
+                              <br />
 
-                            <span style={{ color: '#666' }}>
-                              Price: Rs {item.price}
-                            </span>
-                            <br />
-                            <Box display='flex' alignItems='center'>
-                              <IconButton
-                                variant='contained'
-                                disabled={item?.quantity === 1}
-                                onClick={() => decrementQuantity(item)}
+                              <span style={{ color: '#666' }}>
+                                Price: Rs {item.price}
+                              </span>
+                              <br />
+                              <Box display='flex' alignItems='center'>
+                                <IconButton
+                                  variant='contained'
+                                  disabled={item?.quantity === 1}
+                                  onClick={() => decrementQuantity(item)}
+                                >
+                                  <RemoveIcon />
+                                </IconButton>
+                                <Typography
+                                  variant='body2'
+                                  style={{ margin: '0 8px' }}
+                                >
+                                  {item?.quantity || 0}
+                                  {/* {quantityCount[item.id] || 0} */}
+                                </Typography>
+                                <IconButton
+                                  variant='contained'
+                                  disabled={item?.quantity === 10}
+                                  onClick={() => incrementQuantity(item)}
+                                >
+                                  <AddIcon />
+                                </IconButton>
+                              </Box>
+                              <Tooltip title='Delete' sx={{ fontSize: 15 }}>
+                                <IconButton
+                                  aria-label='delete'
+                                  onClick={() => removeFromCart(item.id)}
+                                >
+                                  <Delete />
+                                </IconButton>
+                              </Tooltip>
+                              <Tooltip
+                                title='Save for Later'
+                                sx={{ fontSize: 15 }}
                               >
-                                <RemoveIcon />
-                              </IconButton>
-                              <Typography
-                                variant='body2'
-                                style={{ margin: '0 8px' }}
-                              >
-                                {item?.quantity || 0}
-                                {/* {quantityCount[item.id] || 0} */}
-                              </Typography>
-                              <IconButton
-                                variant='contained'
-                                disabled={item?.quantity === 10}
-                                onClick={() => incrementQuantity(item)}
-                              >
-                                <AddIcon />
-                              </IconButton>
-                            </Box>
-                            <Tooltip title='Delete' sx={{ fontSize: 15 }}>
-                              <IconButton
-                                aria-label='delete'
-                                onClick={() => removeFromCart(item.id)}
-                              >
-                                <Delete />
-                              </IconButton>
-                            </Tooltip>
-                            <Tooltip
-                              title='Save for Later'
-                              sx={{ fontSize: 15 }}
-                            >
-                              <IconButton
-                                aria-label='save-for-later'
-                                onClick={() => saveForLater(item.id)}
-                              >
-                                Save for later
-                              </IconButton>
-                            </Tooltip>
-                            <Tooltip title='Share' sx={{ fontSize: 15 }}>
-                              <IconButton
-                                aria-label='share'
-                                onClick={() => shareItem(item.id)}
-                              >
-                                Share
-                              </IconButton>
-                            </Tooltip>
-                          </Typography>
-                        }
-                      />
+                                <IconButton
+                                  aria-label='save-for-later'
+                                  onClick={() => saveForLater(item.id)}
+                                >
+                                  Save for later
+                                </IconButton>
+                              </Tooltip>
+                              <Tooltip title='Share' sx={{ fontSize: 15 }}>
+                                <IconButton
+                                  aria-label='share'
+                                  onClick={() => shareItem(item.id)}
+                                >
+                                  Share
+                                </IconButton>
+                              </Tooltip>
+                            </Typography>
+                          }
+                        />
+                      </Grid>
                     </Grid>
-                  </Grid>
-                </ListItem>
-                <Divider />
-              </div>
-            ))}
-          </List>
-          <Box mt={2} display='flex' justifyContent='flex-end'>
-            <Typography
-              variant='h6'
-              component='span'
-              style={{ marginRight: '1rem' }}
-            >
-              Subtotal: Rs {Math.floor(calculateSubtotal())}
-            </Typography>
-            <Button variant='contained' color='primary'>
-              Checkout
-            </Button>
-          </Box>
-        </Paper>
+                  </ListItem>
+                  <Divider />
+                </div>
+              ))}
+            </List>
+            <Box mt={2} display='flex' justifyContent='flex-end'>
+              <Typography
+                variant='h6'
+                component='span'
+                style={{ marginRight: '1rem' }}
+              >
+                Subtotal: Rs {Math.floor(calculateSubtotal())}
+              </Typography>
+              <Button
+                variant='contained'
+                color='primary'
+                onClick={() => {
+                  navigate('/checkout')
+                }}
+              >
+                Checkout
+              </Button>
+            </Box>
+          </Paper>
+        </Container>
       )}
     </div>
   )

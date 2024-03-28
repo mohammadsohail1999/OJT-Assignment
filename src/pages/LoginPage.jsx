@@ -121,6 +121,8 @@ import {
 import { useDispatch } from 'react-redux'
 import { loginSuccess } from '../redux/actions/authActions'
 import { useNavigate } from 'react-router-dom'
+import useUsers from '../hooks/useUsers'
+import toast from 'react-hot-toast'
 
 const LoginPage = () => {
   const dispatch = useDispatch()
@@ -129,6 +131,8 @@ const LoginPage = () => {
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [rememberMe, setRememberMe] = useState(false)
+
+  const { users } = useUsers()
 
   const validateEmail = email => {
     // Regular expression for email validation
@@ -147,14 +151,23 @@ const LoginPage = () => {
     } else if (!validatePassword(password)) {
       setError('Password must be at least 6 characters long')
     } else {
-      dispatch(loginSuccess(email))
-      navigate('/')
+      let userExists = users?.filter(
+        el => el?.email === email && el?.password === password,
+      )?.length
+
+      if (userExists) {
+        toast.success('User logged in successfully')
+        dispatch(loginSuccess(email))
+        navigate('/')
+      } else {
+        toast.error('Invalid user or password')
+      }
     }
   }
 
   const handleForgotPassword = () => {
     // Implement logic for handling forgot password
-    console.log('Forgot password clicked')
+    // console.log('Forgot password clicked')
   }
 
   const handleRememberMe = () => {

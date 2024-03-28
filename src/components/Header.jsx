@@ -83,11 +83,13 @@ export default function MenuAppBar() {
               Ecommerce
             </Typography> */}
             <Stack direction={'row'} spacing={2}>
-              <IconButton aria-label='cart' onClick={navigateToCart}>
-                <Badge badgeContent={items?.length}>
-                  <ShoppingBagIcon />
-                </Badge>
-              </IconButton>
+              {isAuthenticated ? (
+                <IconButton aria-label='cart' onClick={navigateToCart}>
+                  <Badge badgeContent={items?.length}>
+                    <ShoppingBagIcon />
+                  </Badge>
+                </IconButton>
+              ) : null}
 
               <IconButton onClick={toggleTheme}>
                 {theme === 'light' ? <DarkModeIcon /> : <LightModeIcon />}

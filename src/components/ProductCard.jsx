@@ -10,14 +10,22 @@ import { useNavigate } from 'react-router-dom'
 import { Rating } from 'react-simple-star-rating'
 import { useDispatch } from 'react-redux'
 import { addToCart as addtoCartAction } from '../redux/actions/cartActions'
+import useAuth from '../hooks/useAuth'
 
 export default function ProductCard({ cardData }) {
   const dispatch = useDispatch()
 
+  const { isAuthenticated } = useAuth()
+
   const addtoCart = e => {
     e.stopPropagation()
-    dispatch(addtoCartAction(cardData))
-    toast.success('Added to cart!')
+    if (isAuthenticated) {
+      dispatch(addtoCartAction(cardData))
+      toast.success('Added to cart!')
+    } else {
+      toast.error('Please login first.')
+      navigate('/login')
+    }
   }
 
   const navigate = useNavigate()

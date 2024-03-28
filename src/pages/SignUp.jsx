@@ -9,7 +9,11 @@ import {
   Link,
   Avatar,
 } from '@mui/material'
-import { useNavigate } from 'react-router-dom'
+import { Navigate, useNavigate } from 'react-router-dom'
+import useAuth from '../hooks/useAuth'
+import { v4 as uuidv4 } from 'uuid'
+import useUsers from '../hooks/useUsers'
+import toast from 'react-hot-toast'
 
 const SignupPage = () => {
   const navigate = useNavigate()
@@ -18,6 +22,10 @@ const SignupPage = () => {
   const [confirmPassword, setConfirmPassword] = useState('')
   const [avatar, setAvatar] = useState(null)
   const [error, setError] = useState('')
+
+  const { isAuthenticated } = useAuth()
+
+  const { checkUserExist, addUser } = useUsers()
 
   const validateEmail = email => {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -36,13 +44,25 @@ const SignupPage = () => {
     } else if (password !== confirmPassword) {
       setError('Passwords do not match')
     } else {
-      console.log('Signup successful')
-      navigate('/login')
+      const user = {
+        email,
+        password,
+        avatar,
+        id: uuidv4(),
+      }
+
+      if (checkUserExist(user)) {
+        toast.error('User already Exists')
+      } else {
+        addUser(user)
+        toast.success('User registered successfully')
+        navigate('/login')
+      }
     }
   }
 
   const handleLogin = () => {
-    navigate('/login')
+    // navigate('/login')
   }
 
   const handleAvatarChange = event => {
@@ -66,6 +86,10 @@ const SignupPage = () => {
 
     setAvatar(file)
     setError('')
+  }
+
+  if (isAuthenticated) {
+    return <Navigate to='/' />
   }
 
   return (
@@ -125,6 +149,7 @@ const SignupPage = () => {
             value={password}
             onChange={e => setPassword(e.target.value)}
           />
+
           <TextField
             fullWidth
             label='Confirm Password'
@@ -134,6 +159,7 @@ const SignupPage = () => {
             value={confirmPassword}
             onChange={e => setConfirmPassword(e.target.value)}
           />
+
           <Button
             fullWidth
             variant='contained'
@@ -142,6 +168,7 @@ const SignupPage = () => {
           >
             Sign Up
           </Button>
+
           <Box mt={2}>
             <Typography variant='body2' color='textSecondary'>
               Already have an account?{' '}

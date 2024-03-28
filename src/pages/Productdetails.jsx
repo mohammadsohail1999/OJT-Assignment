@@ -119,6 +119,7 @@ import {
 import AddIcon from '@mui/icons-material/Add'
 import RemoveIcon from '@mui/icons-material/Remove'
 import { addToCart } from '../redux/actions/cartActions' // Import addToCart
+import ReactImageMagnify from 'react-image-magnify'
 
 const ProductDetails = () => {
   const dispatch = useDispatch()
@@ -169,11 +170,28 @@ const ProductDetails = () => {
       <Paper elevation={3} style={{ padding: '20px', textAlign: 'left' }}>
         <Grid container spacing={2}>
           <Grid item xs={3} sm={3}>
-            <img
+            <ReactImageMagnify
+              {...{
+                smallImage: {
+                  alt: 'Wristwatch by Ted Baker London',
+                  isFluidWidth: true,
+                  src: productDetail?.image,
+                },
+                largeImage: {
+                  src: productDetail?.image,
+                  width: 500,
+                  height: 1000,
+                },
+              }}
+              style={{
+                zIndex: 100,
+              }}
+            />
+            {/* <img
               src={productDetail?.image}
               alt={productDetail?.title}
               style={{ width: '100%', height: 'auto' }}
-            />
+            /> */}
           </Grid>
           <Grid item xs={12} sm={8}>
             <Typography variant='h4' gutterBottom>

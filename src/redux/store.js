@@ -11,6 +11,7 @@ import categoriesReducer from "./reducers/categoriesReducer";
 import { ProductDetailReducer } from "./reducers/ProductDetailReducer";
 import authReducer from "./reducers/authReducer";
 import CartReducer from "./reducers/CartReducer";
+import userReducer from "./reducers/userReducer";
 
 
 const rootReducer = combineReducers({
@@ -22,13 +23,14 @@ const rootReducer = combineReducers({
     theme:ThemeReducer,
     productDetail: ProductDetailReducer,
     auth: authReducer,
+    users:userReducer,
 })
 
 
 const persistConfig = {
     key: 'root',
     storage,
-    whitelist: ["theme","auth","cart"],
+    whitelist: ["theme","auth","cart","users"],
   }
    
 

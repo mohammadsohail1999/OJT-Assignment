@@ -48,6 +48,10 @@ export const TOGGLE_THEME = "TOGGLE_THEME"
 export const GET_PRODUCT_CATEGORIES = "GET_PRODUCT_CATEGORIES";
 
 
+export const ADD_USER  = "ADD_USER";
+
+export const REMOVE_USER = "REMOVE_USER";
+
 
 
 
