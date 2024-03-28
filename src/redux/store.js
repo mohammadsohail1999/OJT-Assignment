@@ -2,7 +2,7 @@ import {createStore,applyMiddleware, combineReducers} from "redux";
 import {thunk} from "redux-thunk";
 import { ProductReducer } from "./reducers/ProductReducer";
 import {composeWithDevTools} from "@redux-devtools/extension";
-import { GlobalLoadingReducer } from "./reducers/GlobalLoaderReducer";
+import { LoadingReducer } from "./reducers/LoadingReducer";
 import ThemeReducer from "./reducers/ThemeReducer";
 import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage' // defaults to localStorage for web
@@ -17,6 +17,7 @@ const rootReducer = combineReducers({
     cart: CartReducer,
     products:ProductReducer,
     categoriesReducer:categoriesReducer,
+    loader: LoadingReducer,
     // GlobalLoading: GlobalLoadingReducer,
     theme:ThemeReducer,
     productDetail: ProductDetailReducer,
@@ -27,7 +28,7 @@ const rootReducer = combineReducers({
 const persistConfig = {
     key: 'root',
     storage,
-    whitelist: ["theme"],
+    whitelist: ["theme","auth","cart"],
   }
    
 
@@ -39,4 +40,3 @@ const persistConfig = {
    
 
 
-// export const store = createStore(rootReducer,  composeWithDevTools(applyMiddleware(thunk)));

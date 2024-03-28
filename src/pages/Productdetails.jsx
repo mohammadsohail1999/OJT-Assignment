@@ -102,11 +102,10 @@
 
 // export default ProductDetails;
 
-
-import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom'; // Import useNavigate hook
-import { useDispatch, useSelector } from 'react-redux';
-import { getProductDetailAction } from '../redux/actions/productDetailActions';
+import React, { useEffect, useState } from 'react'
+import { useParams, useNavigate } from 'react-router-dom' // Import useNavigate hook
+import { useDispatch, useSelector } from 'react-redux'
+import { getProductDetailAction } from '../redux/actions/productDetailActions'
 import {
   Typography,
   Paper,
@@ -116,74 +115,79 @@ import {
   Button,
   IconButton,
   Box,
-} from '@mui/material';
-import AddIcon from '@mui/icons-material/Add';
-import RemoveIcon from '@mui/icons-material/Remove';
-import { addToCart } from '../redux/actions/cartActions'; // Import addToCart
+} from '@mui/material'
+import AddIcon from '@mui/icons-material/Add'
+import RemoveIcon from '@mui/icons-material/Remove'
+import { addToCart } from '../redux/actions/cartActions' // Import addToCart
 
 const ProductDetails = () => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate(); // Initialize useNavigate hook
-  const { id } = useParams();
-  const productDetail = useSelector((state) => state.productDetail);
+  const dispatch = useDispatch()
+  const navigate = useNavigate() // Initialize useNavigate hook
+  const { id } = useParams()
+  const productDetail = useSelector(state => state.productDetail)
 
-  const [quantity, setQuantity] = useState(1); // Initialize quantity state
+  const [quantity, setQuantity] = useState(1) // Initialize quantity state
 
   useEffect(() => {
-    dispatch(getProductDetailAction(id));
-  }, [dispatch, id]);
+    dispatch(getProductDetailAction(id))
+  }, [dispatch, id])
 
   const handleIncrement = () => {
     if (quantity < 10) {
-      setQuantity(quantity + 1);
+      setQuantity(quantity + 1)
     }
-  };
+  }
 
   const handleDecrement = () => {
     if (quantity > 1) {
-      setQuantity(quantity - 1);
+      setQuantity(quantity - 1)
     }
-  };
+  }
 
   const handleAddToCart = () => {
     // Dispatch action to add product to cart
-    dispatch(addToCart(productDetail)); // Assuming productDetail contains necessary info
+    dispatch(addToCart({ ...productDetail })) // Assuming productDetail contains necessary info
     // Navigate to cart component
-    navigate('/cart');
-  };
-
-  if (!productDetail || productDetail.loading) {
-    return (
-      <Grid container justifyContent="center" alignItems="center" style={{ height: '100vh' }}>
-        <CircularProgress />
-      </Grid>
-    );
+    // navigate('/cart')
   }
 
+  // if (!productDetail || productDetail.loading) {
+  //   return (
+  //     <Grid
+  //       container
+  //       justifyContent='center'
+  //       alignItems='center'
+  //       style={{ height: '100vh' }}
+  //     >
+  //       <CircularProgress />
+  //     </Grid>
+  //   )
+  // }
+
   return (
-    <Container sx={{ marginTop: '20px' }} maxWidth="md">
+    <Container sx={{ marginTop: '20px' }} maxWidth='md'>
       <Paper elevation={3} style={{ padding: '20px', textAlign: 'left' }}>
         <Grid container spacing={2}>
           <Grid item xs={3} sm={3}>
             <img
-              src={productDetail.image}
-              alt={productDetail.title}
+              src={productDetail?.image}
+              alt={productDetail?.title}
               style={{ width: '100%', height: 'auto' }}
             />
           </Grid>
           <Grid item xs={12} sm={8}>
-            <Typography variant="h4" gutterBottom>
-              {productDetail.title}
+            <Typography variant='h4' gutterBottom>
+              {productDetail?.title}
             </Typography>
-            <Typography variant="h6" gutterBottom>
-              Price: ${productDetail.price}
+            <Typography variant='h6' gutterBottom>
+              Price: ${productDetail?.price}
             </Typography>
-            <Typography variant="body1" gutterBottom>
-              {productDetail.description}
+            <Typography variant='body1' gutterBottom>
+              {productDetail?.description}
             </Typography>
             <Button
-              variant="contained"
-              color="primary"
+              variant='contained'
+              color='primary'
               onClick={handleAddToCart}
               style={{ marginTop: '5px' }}
             >
@@ -193,7 +197,7 @@ const ProductDetails = () => {
         </Grid>
       </Paper>
     </Container>
-  );
-};
+  )
+}
 
-export default ProductDetails;
+export default ProductDetails

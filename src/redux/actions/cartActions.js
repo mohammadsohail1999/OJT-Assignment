@@ -1,15 +1,35 @@
-import { ADD_TO_CART, REMOVE_FROM_CART, CLEAR_CART } from "../actionTypes";
+import { ADD_TO_CART, CLEAR_CART, REMOVE_FROM_CART, UPDATE_CART } from "../actionTypes";
 
-export const addToCart = (item) => ({
-  type: ADD_TO_CART,
-  payload: item,
-});
+function addToCart(product){
+    return {
+        type: ADD_TO_CART,
+        payload:product
+    }
+}
 
-export const removeFromCart = (itemId) => ({
-  type: REMOVE_FROM_CART,
-  payload: itemId,
-});
+function updateCart(product){
+    return {
+        type: UPDATE_CART,
+        payload:product
+    }
+}
 
-export const clearCart = () => ({
-  type: CLEAR_CART,
-});
+
+
+
+function removefromCartAction(id){
+    return {
+        type:REMOVE_FROM_CART,
+        payload:id,
+    }
+}
+
+
+function clearCart(){
+    return {
+        type:CLEAR_CART
+    }
+}
+
+
+export {addToCart, clearCart,removefromCartAction,updateCart}
