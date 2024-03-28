@@ -22,6 +22,7 @@ import { Link, NavLink, useNavigate } from 'react-router-dom'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 import useAuth from '../hooks/useAuth'
 import IsOnline from './IsOnline'
+import useCart from '../hooks/useCart'
 
 const HeaderSettings = ['Logout']
 
@@ -31,6 +32,8 @@ export default function MenuAppBar() {
   const dispatch = useDispatch()
 
   const navigate = useNavigate()
+
+  const { items } = useCart()
 
   const { logout, isAuthenticated, user } = useAuth()
 
@@ -81,7 +84,7 @@ export default function MenuAppBar() {
             </Typography> */}
             <Stack direction={'row'} spacing={2}>
               <IconButton aria-label='cart' onClick={navigateToCart}>
-                <Badge badgeContent={4}>
+                <Badge badgeContent={items?.length}>
                   <ShoppingBagIcon />
                 </Badge>
               </IconButton>

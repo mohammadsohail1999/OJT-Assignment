@@ -18,6 +18,7 @@ import LoginPage from './pages/LoginPage'
 import GlobalLoader from './components/GlobalLoader'
 import Protected from './components/ProtectedRoute'
 import SignUp from './pages/SignUp'
+import Layout from './components/Layout'
 
 export default function App() {
   return (
@@ -27,24 +28,25 @@ export default function App() {
           <>
             <CssBaseline />
             <Router>
-              <Header />
-              <Routes>
-                <Route path='/' element={<Homepage />} />
-                <Route path='/category/:id' element={<Homepage />} />
-                <Route
-                  path='/cart'
-                  element={
-                    <Protected>
-                      <CartPage />
-                    </Protected>
-                  }
-                />
-                <Route path='/:id' element={<ProductDetails />} />
-                <Route path='/login' element={<LoginPage />} />
-                <Route path='/signup' element={<SignUp />} />
-                {/* <Route path='/cart' element={<CartPage />} /> */}
-                <Route path='*' element={<NotFound />} />
-              </Routes>
+              <Layout>
+                <Routes>
+                  <Route path='/' element={<Homepage />} />
+                  <Route path='/category/:id' element={<Homepage />} />
+                  <Route
+                    path='/cart'
+                    element={
+                      <Protected>
+                        <CartPage />
+                      </Protected>
+                    }
+                  />
+                  <Route path='/:id' element={<ProductDetails />} />
+                  <Route path='/login' element={<LoginPage />} />
+                  <Route path='/signup' element={<SignUp />} />
+                  {/* <Route path='/cart' element={<CartPage />} /> */}
+                  <Route path='*' element={<NotFound />} />
+                </Routes>
+              </Layout>
             </Router>
           </>
           <Toaster />

@@ -8,10 +8,15 @@ import { Box, Button, Stack } from '@mui/material'
 import toast from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
 import { Rating } from 'react-simple-star-rating'
+import { useDispatch } from 'react-redux'
+import { addToCart as addtoCartAction } from '../redux/actions/cartActions'
 
 export default function ProductCard({ cardData }) {
+  const dispatch = useDispatch()
+
   const addtoCart = e => {
     e.stopPropagation()
+    dispatch(addtoCartAction(cardData))
     toast.success('Added to cart!')
   }
 
@@ -20,8 +25,6 @@ export default function ProductCard({ cardData }) {
   const NavigatetoProductDetail = id => {
     navigate(`/${id}`)
   }
-
-  console.log('Cart Data', cardData)
 
   return (
     <Card
@@ -94,7 +97,6 @@ export default function ProductCard({ cardData }) {
     </Card>
   )
 }
-
 
 // import * as React from 'react';
 // import Card from '@mui/material/Card';

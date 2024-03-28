@@ -9,8 +9,6 @@ const GlobalLoader = () => {
 
   const globalLoader = useSelector(getGlobalLoaderState)
 
-  console.log(globalLoader, 'global loader')
-
   const handleClose = () => {
     dispatch(GlobalLoaderStop())
   }

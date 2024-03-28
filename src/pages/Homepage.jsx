@@ -58,27 +58,26 @@ const Homepage = () => {
   return isError ? (
     <ErrorPage />
   ) : (
-    <Box>
-      <Container
-        maxWidth='md'
-        sx={{
-          paddingY: '2rem',
-          marginTop: '6rem',
-        }}
-      >
-        <Categories />
-        <Grid my={'1.5rem'} container spacing={4}>
-          {paginatedProducts?.length
-            ? paginatedProducts?.map(product => {
-                return (
-                  <Grid key={product?.id} item xs={12} md={6} lg={4}>
-                    <ProductCard cardData={product} />
-                  </Grid>
-                )
-              })
-            : null}
-        </Grid>
+    <Container
+      maxWidth='md'
+      sx={{
+        paddingY: '2rem',
+      }}
+    >
+      <Categories />
+      <Grid my={'1.5rem'} container spacing={4}>
+        {paginatedProducts?.length
+          ? paginatedProducts?.map(product => {
+              return (
+                <Grid key={product?.id} item xs={12} md={6} lg={4}>
+                  <ProductCard cardData={product} />
+                </Grid>
+              )
+            })
+          : null}
+      </Grid>
 
+      {paginatedProducts?.length ? (
         <Stack
           py={'3rem'}
           alignItems={'center'}
@@ -115,8 +114,8 @@ const Homepage = () => {
             <MenuItem value={15}>15</MenuItem>
           </Select>
         </Stack>
-      </Container>
-    </Box>
+      ) : null}
+    </Container>
   )
 }
 
