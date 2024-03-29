@@ -11,6 +11,7 @@ import { Rating } from 'react-simple-star-rating'
 import { useDispatch } from 'react-redux'
 import { addToCart as addtoCartAction } from '../redux/actions/cartActions'
 import useAuth from '../hooks/useAuth'
+import { v4 } from 'uuid'
 
 export default function ProductCard({ cardData }) {
   const dispatch = useDispatch()
@@ -21,7 +22,9 @@ export default function ProductCard({ cardData }) {
     e.stopPropagation()
     if (isAuthenticated) {
       dispatch(addtoCartAction(cardData))
-      toast.success('Added to cart!')
+      toast.success('Added to cart!', {
+        id: cardData?.id,
+      })
     } else {
       toast.error('Please login first.')
       navigate('/login')

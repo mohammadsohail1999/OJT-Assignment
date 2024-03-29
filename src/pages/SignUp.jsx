@@ -6,14 +6,14 @@ import {
   Paper,
   Grid,
   Box,
-  Link,
   Avatar,
 } from '@mui/material'
-import { Navigate, useNavigate } from 'react-router-dom'
+import { Link, Navigate, useNavigate } from 'react-router-dom'
 import useAuth from '../hooks/useAuth'
 import { v4 as uuidv4 } from 'uuid'
 import useUsers from '../hooks/useUsers'
 import toast from 'react-hot-toast'
+import { getBase64 } from '../utils/CommonFunctions'
 
 const SignupPage = () => {
   const navigate = useNavigate()
@@ -83,6 +83,14 @@ const SignupPage = () => {
       setError('Image size exceeds 2MB limit')
       return
     }
+
+    getBase64(file)
+      .then(res => {
+        console.log(res, 'imageurl 64')
+      })
+      .catch(err => {
+        err
+      })
 
     setAvatar(file)
     setError('')
@@ -171,10 +179,7 @@ const SignupPage = () => {
 
           <Box mt={2}>
             <Typography variant='body2' color='textSecondary'>
-              Already have an account?{' '}
-              <Link onClick={handleLogin} variant='body2' color='primary'>
-                Log in
-              </Link>
+              Already have an account? <Link to={'/login'}>Log in</Link>
             </Typography>
           </Box>
         </Paper>
