@@ -120,6 +120,8 @@ import AddIcon from '@mui/icons-material/Add'
 import RemoveIcon from '@mui/icons-material/Remove'
 import { addToCart } from '../redux/actions/cartActions' // Import addToCart
 import ReactImageMagnify from 'react-image-magnify'
+import useAuth from '../hooks/useAuth'
+import toast from 'react-hot-toast'
 
 const ProductDetails = () => {
   const dispatch = useDispatch()
@@ -145,12 +147,21 @@ const ProductDetails = () => {
     }
   }
 
-  const handleAddToCart = () => {
-    // Dispatch action to add product to cart
-    dispatch(addToCart({ ...productDetail })) // Assuming productDetail contains necessary info
-    // Navigate to cart component
-    // navigate('/cart')
+  const { isAuthenticated } = useAuth()
+
+  const handleAddToCart = e => {
+    e.stopPropagation()
+    if (isAuthenticated) {
+      dispatch(addToCart({ ...productDetail })) // Assuming productDetail contains necessary info
+      toast.success('Added to cart!')
+    } else {
+      toast.error('Please login first.')
+      navigate('/login')
+    }
   }
+
+
+
 
   // if (!productDetail || productDetail.loading) {
   //   return (
@@ -198,7 +209,7 @@ const ProductDetails = () => {
               {productDetail?.title}
             </Typography>
             <Typography variant='h6' gutterBottom>
-              Price: ${productDetail?.price}
+              Price: Rs{productDetail?.price}
             </Typography>
             <Typography variant='body1' gutterBottom>
               {productDetail?.description}
