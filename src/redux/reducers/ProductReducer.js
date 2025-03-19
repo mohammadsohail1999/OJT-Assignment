@@ -11,6 +11,9 @@ export const ProductReducer = (state=initialProductState,action)=>{
     switch (action.type) {
 
         case GET_PRODUCTS:
+
+
+        
             return {
                 ...state,
             data: action?.payload,

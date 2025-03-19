@@ -3,7 +3,13 @@ import '@fontsource/roboto/400.css'
 import '@fontsource/roboto/500.css'
 import '@fontsource/roboto/700.css'
 import { CssBaseline } from '@mui/material'
-import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
+import {
+  Route,
+  BrowserRouter as Router,
+  RouterProvider,
+  Routes,
+  createBrowserRouter,
+} from 'react-router-dom'
 import Header from './components/Header'
 import { Provider } from 'react-redux'
 import { persistor, store } from './redux/store'
@@ -20,6 +26,8 @@ import Protected from './components/ProtectedRoute'
 import SignUp from './pages/SignUp'
 import Layout from './components/Layout'
 import CheckoutPage from './pages/CheckoutPage'
+
+
 
 export default function App() {
   return (

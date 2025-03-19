@@ -29,7 +29,7 @@ const Homepage = () => {
 
   let totalPages = Math.ceil(products?.length / limit)
 
-  console.log(totalPages, products, 'dubug')
+  // console.log(totalPages, products, 'dubug')
 
   const { id } = useParams()
 

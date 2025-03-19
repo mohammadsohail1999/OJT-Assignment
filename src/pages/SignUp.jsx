@@ -23,6 +23,8 @@ const SignupPage = () => {
   const [avatar, setAvatar] = useState(null)
   const [error, setError] = useState('')
 
+  console.log(avatar, 'avatar')
+
   const { isAuthenticated } = useAuth()
 
   const { checkUserExist, addUser } = useUsers()
@@ -86,10 +88,10 @@ const SignupPage = () => {
 
     getBase64(file)
       .then(res => {
-        console.log(res, 'imageurl 64')
+        setAvatar(res)
       })
       .catch(err => {
-        err
+        toast.error('Something went wrong.')
       })
 
     setAvatar(file)
@@ -124,7 +126,7 @@ const SignupPage = () => {
             alignItems='center'
           >
             <Avatar
-              src={avatar ? URL.createObjectURL(avatar) : undefined}
+              src={avatar ? avatar : undefined}
               sx={{ width: 80, height: 80 }}
             />
           </Box>

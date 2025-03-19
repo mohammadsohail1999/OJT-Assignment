@@ -13,19 +13,14 @@ function getBase64(file) {
 
 
     return new Promise((res,rej)=>{
-
         reader.onload = function () {
             res(reader.result)
         };
-
         reader.onerror = function (error) {
             rej(error);
         };
-
     })
 
-   
-  
   
  }
 
@@ -34,3 +29,5 @@ export {
     capitalizeFirstLetter,
     getBase64
 }
+
+

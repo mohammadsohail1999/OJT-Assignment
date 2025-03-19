@@ -153,15 +153,14 @@ const ProductDetails = () => {
     e.stopPropagation()
     if (isAuthenticated) {
       dispatch(addToCart({ ...productDetail })) // Assuming productDetail contains necessary info
-      toast.success('Added to cart!')
+      toast.success('Added to cart!', {
+        id: productDetail?.id,
+      })
     } else {
       toast.error('Please login first.')
       navigate('/login')
     }
   }
-
-
-
 
   // if (!productDetail || productDetail.loading) {
   //   return (

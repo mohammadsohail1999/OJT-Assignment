@@ -35,7 +35,9 @@ export default function MenuAppBar() {
 
   const { items } = useCart()
 
-  const { logout, isAuthenticated, user } = useAuth()
+  const { logout, isAuthenticated, user, userDetail } = useAuth()
+
+  console.log(userDetail, 'userDetail')
 
   const toggleTheme = () => {
     dispatch(ThemeActions)

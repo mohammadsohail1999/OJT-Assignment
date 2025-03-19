@@ -31,10 +31,6 @@ const useUsers = () => {
         deleteUser
     }
     
-
-
-
-
 }
 
 export default useUsers

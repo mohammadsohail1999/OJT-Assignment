@@ -11,10 +11,8 @@ export const addUserAction = (user)=>{
 
 
 export const removeUserAction = (id)=>{
-
     return {
         type: REMOVE_USER,
         payload:id
     }
-
 }

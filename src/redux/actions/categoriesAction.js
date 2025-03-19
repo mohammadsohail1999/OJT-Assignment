@@ -10,7 +10,7 @@ export const getCategoriesAction = ()=>async(dispatch,thunkArgs)=>{
             payload:res?.data || []
         })
        }).catch((err)=>{
-        console.log(err);
+        // console.log(err);
        });
     
 
